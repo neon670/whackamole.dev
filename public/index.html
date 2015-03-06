@@ -1,0 +1,120 @@
+<html>
+<head>
+	<title>Whack a Mole</title>
+	<style type="text/css">
+	img{
+		width: 185px;
+		height: 140px;
+		opacity: .02;
+		float: right;
+		/*background-color: red;*/
+	}
+	.gamebaord{
+		width: 600px;
+		height: 420px;
+		padding-left: 270;
+		/*background-color: red;*/
+	}
+
+	 body{
+		background-color: grey;
+	}
+
+	.tile {
+		border: solid;
+		height: 140px;
+		width: 185px;
+		float: left;
+	}
+
+
+	</style>
+</head>
+<body>
+<div class="gamebaord">
+	<div class='tile'>
+		<img src="/img/mole.jpg">
+	</div>
+	<div class='tile'>
+		<img src="/img/mole.jpg">
+	</div>	
+	<div class='tile'>
+		<img src="/img/mole.jpg">
+	</div>
+	<div class='tile'>
+		<img src="/img/mole.jpg">
+	</div>
+	<div class='tile'>
+		<img src="/img/mole.jpg">
+	</div>
+	<div class='tile'>
+		<img src="/img/mole.jpg">
+	</div>
+	<div class='tile'>
+		<img src="/img/mole.jpg">
+	</div>
+	<div class='tile'>
+		<img src="/img/mole.jpg">
+	</div>
+	<div class='tile'>
+		<img src="/img/mole.jpg">
+	</div>								
+<button type="button" class="btn">Start</button>
+</div>
+
+
+
+<script src="/js/jquery.js"></script>
+
+<script>
+	
+ 	$('document').ready(function(){
+		var inbox = $('.tile');
+		// inbox.hide();
+		inbox.fadeIn(2000);
+		$('img').on('click', function(){
+			$(this).css('opacity','.02');
+		
+
+		});
+		// function getRandomInbox	
+		// });
+		// var max = 9;
+// // 
+		// Generate a random number between 1 and max
+		// var random =Math.floor((Math.random() *max)+1);
+		// console.log(random);
+		// Set timer to fade in color
+		function getRandomTile(){
+			var random =Math.floor(Math.random()*8)
+			var images =$('img');
+			console.log(images[random])
+			return images[random];
+		}
+		function animate(){
+			var tile = getRandomTile();
+			$(tile).css('opacity', '1');
+		
+		setTimeout(function(){
+			$(tile).css('opacity','.02');
+			},1500);
+		};
+		// Set timer to fade out color
+		// setInterval(animate,2000)
+// 
+		// $('.inbox').fadeIn(1000);
+		// $('.inbox').click(function(){
+			
+		// });
+ 	// });
+
+
+	
+	
+	
+});
+</script>
+
+
+</body>
+</html>
