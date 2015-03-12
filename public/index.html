@@ -5,61 +5,93 @@
 	img{
 		width: 185px;
 		height: 140px;
-		opacity: .02;
+		opacity: .005;
 		float: right;
-		/*background-color: red;*/
+		border-radius: 60px;
+		
 	}
 	.gamebaord{
-		width: 600px;
+		width: 900px;
 		height: 420px;
+		padding-top: 200;
 		padding-left: 270;
 		/*background-color: red;*/
+		/*background-image: url('/img/mallet.jpeg');*/
 	}
 
 	 body{
-		background-color: grey;
+		background-image: url(/img/scene_moles.png);
+		/*cursor: url(/img/hammer.jpg);*/
 	}
 
 	.tile {
-		border: solid;
+		/*border:solid;*/
 		height: 140px;
 		width: 185px;
 		float: left;
+	}
+	h1{
+		/*padding-left: 350;*/
+		font-size: 44px;
+		color: red;
+	}
+	.track{
+		float: top;
+		/*position: absolute;*/
+		padding-left: 50;
+		padding-top: 100;
+		color: white;
+		font-size: 18;
 	}
 
 
 	</style>
 </head>
 <body>
+	<h1><pre><center>Whack a Mole</center></pre></h1>
+	
+	<div class='track'>
+		<button type="button" class="btn">Start</button>
+		<h3><pre id="score">Score:0</pre></h3>
+		<h3><pre id="timer">TIMER:30</pre></h3>
+	</div>
 <div class="gamebaord">
 	<div class='tile'>
-		<img src="/img/mole.jpg">
+		<img src="/img/mole_cartoon.png">
 	</div>
 	<div class='tile'>
-		<img src="/img/mole.jpg">
+		<img src="/img/mole_cartoon.png">
 	</div>	
 	<div class='tile'>
-		<img src="/img/mole.jpg">
+		<img src="/img/mole_cartoon.png">
 	</div>
 	<div class='tile'>
-		<img src="/img/mole.jpg">
+		<img src="/img/mole_cartoon.png">
 	</div>
 	<div class='tile'>
-		<img src="/img/mole.jpg">
+		<img src="/img/mole_cartoon.png">
 	</div>
 	<div class='tile'>
-		<img src="/img/mole.jpg">
+		<img src="/img/mole_cartoon.png">
 	</div>
 	<div class='tile'>
-		<img src="/img/mole.jpg">
+		<img src="/img/mole_cartoon.png">
 	</div>
 	<div class='tile'>
-		<img src="/img/mole.jpg">
+		<img src="/img/mole_cartoon.png">
 	</div>
 	<div class='tile'>
-		<img src="/img/mole.jpg">
-	</div>								
-<button type="button" class="btn">Start</button>
+		<img src="/img/mole_cartoon.png">
+	</div>
+	<div class='tile'>
+		<img src="/img/mole_cartoon.png">
+	</div>
+	<div class='tile'>
+		<img src="/img/mole_cartoon.png">
+	</div>
+	<div class='tile'>
+		<img src="/img/mole_cartoon.png">
+	</div>
 </div>
 
 
@@ -71,10 +103,19 @@
  	$('document').ready(function(){
 		var inbox = $('.tile');
 		// inbox.hide();
-		inbox.fadeIn(2000);
+		// inbox.fadeIn(2000);
 		$('img').on('click', function(){
-			$(this).css('opacity','.02');
-		
+			score++;
+			$("#score").html('Score '+score);
+			$(this).css('opacity','.005');
+				if(score==maxscore){
+				alert("You Win")
+				location.reload();
+
+			}else{score>=maxscore
+				// alert('You Lose')
+
+			};
 
 		});
 		// function getRandomInbox	
@@ -90,17 +131,47 @@
 			var images =$('img');
 			console.log(images[random])
 			return images[random];
+			
 		}
 		function animate(){
 			var tile = getRandomTile();
 			$(tile).css('opacity', '1');
-		
-		setTimeout(function(){
-			$(tile).css('opacity','.02');
-			},1500);
-		};
+
 		// Set timer to fade out color
-		// setInterval(animate,2000)
+		setTimeout(function(){
+			$(tile).css('opacity','.01');
+			},1000);
+		};
+	
+		var timer= 30
+		var score= 0
+		var maxscore= 15
+
+		var intervalId = setInterval(adjustTimer, 1000);
+
+		// var counter=setInterval(timer, 30000);
+	 // 	//1000 will  run it every 1 second
+
+		function adjustTimer()
+		{
+	  		timer--;
+	  		if (timer >= 0)
+	  		{
+	  			console.log(timer);
+	  			$('#timer').html('TIMER '+ timer)
+	  			// grab id of #timer
+	  			// change inner html of score with timer
+	     		// setInterval(timer);
+	     	}else{timer==0
+	     			// alert("Times Up/Play Again");
+	     			// location.reload();
+	     	}
+	     	
+		}
+		
+
+	 
+		setInterval(animate,1500)
 // 
 		// $('.inbox').fadeIn(1000);
 		// $('.inbox').click(function(){
